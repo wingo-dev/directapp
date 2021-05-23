@@ -12,6 +12,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                 @endif
                 <div class="row">
                     <div class="col-sm">

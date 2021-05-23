@@ -27928,4 +27928,9 @@ table.dataTable>tbody>tr.child span.dtr-data {
 
 /*# sourceMappingURL=style.css.map */
 
-in
+.thead-info{
+    background-color: #00aced;
+}
+.thead-info h3{
+    color: white;
+}

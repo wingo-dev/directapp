@@ -35,16 +35,29 @@
                                                 <td></td>
                                             </tr>
                                             @for($category_num=0; $category_num < count($listing); $category_num++)
-                                            <tr>
-                                                <td></td>
-                                                <td>{{$listing[$category_num]["ctg_name"]}}</td>
-                                                <td><img src="{{asset('profile_image/'.$listing[$category_num]["p_img"])}}" width="100"></td>
-                                                <td>{{$listing[$category_num]['name']}}</td>
-                                                <td>{{$listing[$category_num]['email']}}</td>
-                                                <td>{{$listing[$category_num]['phone']}}</td>
-                                                <td><span class="badge badge-info">Pending</span></td>
-                                                <td><a href="{{ route('admin.approve', $listing[$category_num]['id']) }}" class="btn btn-primary">Approve</a></td>
-                                            </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>{{$listing[$category_num]["ctg_name"]}}</td>
+                                                    <td><img src="{{asset('profile_image/'.$listing[$category_num]["p_img"])}}" width="100"></td>
+                                                    <td>{{$listing[$category_num]['name']}}</td>
+                                                    <td>{{$listing[$category_num]['email']}}</td>
+                                                    <td>{{$listing[$category_num]['phone']}}</td>
+                                                    <td>
+                                                        @if($listing[$category_num]['status'] == 0)
+                                                            <span class="badge badge-danger">Pending</span>
+                                                        @else
+                                                            <span class="badge badge-success">Approved</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{ route('admin.listing.edit', $listing[$category_num]['id']) }}" class="mr-25" data-toggle="tooltip"
+                                                           data-original-title="Edit"> <i class="icon-pencil"></i> </a>
+                                                        <a href="{{ route('admin.listing.delete', $listing[$category_num]['id']) }}"
+                                                           data-toggle="tooltip" data-original-title="Close">
+                                                            <i class="icon-trash txt-danger"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                             @endfor
                                         @endforeach
                                         </tbody>

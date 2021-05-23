@@ -7,6 +7,7 @@ use Validator;
 use App\User;
 use App\Group;
 use App\Category;
+use App\Directory;
 class AdminController extends Controller
 {
     public function __construct()
@@ -22,8 +23,25 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'is_admin' => 0,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
         ]);
+        return back();
+    }
+    public function viewCustomers(){
+        $customers = User::where('is_admin', 0)->get();
+        return view('admin.view_customers', compact('customers'));
+    }
+    public function editCustomer($id){
+        $customer = User::where('id', $id)->get();
+        return view('admin.edit_customer', compact('customer'));
+    }
+    public function updateCustomer(Request $request){
+        $data = $request->all();
+        User::where('id', $data['user_id'])->update(['name'=>$data['name'], 'email'=>$data['email'], 'password'=>bcrypt($data['password'])]);
+        return redirect()->route('admin.view.customers');
+    }
+    public function customerDelete($id){
+        User::where('id', $id)->delete();
         return back();
     }
     // group
@@ -32,7 +50,7 @@ class AdminController extends Controller
         return view('admin.category', compact('groups'));
     }
     public function addGroup(Request $request){
-        
+
         Group::create([
             'group_name' => $request->g_name
         ]);
@@ -58,8 +76,38 @@ class AdminController extends Controller
         Category::where('id', $ctg_id)->delete();
         return back();
     }
-    // pedding listings
+//    listings management
+    public function viewListings(){
+        $listings = Directory::join('categories', 'categories.id', 'directories.category_id')
+            ->join('groups', 'groups.id', 'categories.group_id')->get(['categories.*', 'groups.*','directories.*']);
+        $listings = $listings->groupBy('group_name');
+        return view('admin.listings_management', compact('listings'));
+    }
+    public function editListing($id){
+        $groups = Group::all();
+        $listing = Directory::where('id', $id)->get();
+        return view('admin.admin_edit_listing', compact('groups', 'listing'));
+    }
+    public function updateListing(Request $request){
+        $data = $request->all();
+        Directory::where('id', $data['directory_id'])->update(['name'=>$data['name'], 'email'=>$data['email'],
+            'phone'=>$data['phone'], 'address'=>$data['mailing'], 'undergraduate_year'=>$data['graduation'],
+            'law_year'=>$data['law'], 'bar_year'=>$data['bar'], 'practice_area'=>$data['areas'], 'category_id'=>$data['category_name']]);
+        return redirect()->route('admin.listings.management');
+    }
+    public function listingDelete($id){
+        Directory::where('id', $id)->delete();
+        return back();
+    }
+    // pending listings
     public function viewPendingListings(){
-        return view('admin.pending_listings');
+        $listings = Directory::join('categories', 'categories.id', 'directories.category_id')
+            ->join('groups', 'groups.id', 'categories.group_id')->where('status', 0)->get(['categories.*', 'groups.*','directories.*']);
+        $listings = $listings->groupBy('group_name');
+        return view('admin.pending_listings', compact('listings'));
+    }
+    public function approveListing($listing_id){
+        Directory::where('id', $listing_id)->update(['status'=>1]);
+        return back();
     }
 }

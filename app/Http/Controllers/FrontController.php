@@ -16,7 +16,7 @@ class FrontController extends Controller
     }
     public function Listings($ctg_id){
         $group_name = Group::join('categories','categories.group_id', '=', 'groups.id')->where('categories.id', $ctg_id)->get();
-        $listings = Directory::where('category_id', $ctg_id)->where('status', 0)->get();
+        $listings = Directory::where('category_id', $ctg_id)->where('status', 1)->get();
         return view('listing_detail', compact('listings', 'group_name'));
     }
 }

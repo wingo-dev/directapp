@@ -20,6 +20,8 @@
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </head>
 
 <body>
@@ -80,31 +82,31 @@
             <div class="nicescroll-bar">
                 <div class="navbar-nav-wrap">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item {{ Request::is('user*') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('user.home') }}">
                                 <i class="glyphicon glyphicon-user"></i>
                                 <span class="nav-link-text">Add Listings</span>
                             </a>
                         </li>
                     </ul>
-                    {{-- <div class="nav-header">
+                    <div class="nav-header">
                         <span>Directory</span>
                         <span>GS</span>
                     </div>
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="">
+                        <li class="nav-item {{ Request::is('user/management*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('view.listings') }}">
                                 <i class="ion ion-ios-book"></i>
-                                <span class="nav-link-text">Categories</span>
+                                <span class="nav-link-text">Manage Listings</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('view.pending') }}">
+                        <li class="nav-item {{ Request::is('user/pending-list*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('view.pending.listings') }}">
                                 <i class="ion ion-ios-book"></i>
                                 <span class="nav-link-text">Pending Listings</span>
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
                 </div>
             </div>
         </nav>
