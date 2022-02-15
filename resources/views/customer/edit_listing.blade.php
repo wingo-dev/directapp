@@ -46,19 +46,19 @@
                                 <div class="form-group row">
                                     <label for="inputGraduation" class="col-sm-4 col-form-label">Undergraduate Institution & Graduation Year</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputGraduation" name="graduation" value="{{ $listing[0]->undergraduate_year }}">
+                                        <input type="text" class="form-control" id="inputGraduation" name="graduation" value="{{ $listing[0]->undergraduate_year }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputLaw" class="col-sm-4 col-form-label">Law School & Graduation Year</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputLaw" name="law" value="{{ $listing[0]->law_year }}">
+                                        <input type="text" class="form-control" id="inputLaw" name="law" value="{{ $listing[0]->law_year }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputBar" class="col-sm-4 col-form-label">Bar Admission State and Year</label>
                                     <div class="col-sm-8">
-                                        <input type="number" class="form-control" id="inputBar" name="bar" value="{{ $listing[0]->bar_year }}">
+                                        <input type="text" class="form-control" id="inputBar" name="bar" value="{{ $listing[0]->bar_year }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">

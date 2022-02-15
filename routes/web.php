@@ -10,11 +10,14 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
-|
+|B
 */
 // front controller
 Route::get('/', 'FrontController@index')->name('front');
+Route::get('/submission', 'FrontController@submission')->name('submission');
 Route::get('/list/{ctg_id}', 'FrontController@Listings')->name('detail');
+
+Route::get('/close', 'FrontController@close')->name('close');
 // end front controller
 
 Auth::routes(['register' => false]);

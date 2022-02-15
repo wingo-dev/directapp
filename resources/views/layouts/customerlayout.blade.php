@@ -19,8 +19,8 @@
     {{-- <link href="{{ asset('vendors/jquery-toast-plugin/dist/jquery.toast.min.css') }}" rel="stylesheet" type="text/css"> --}}
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="{{ asset('vendors/jquery/dist/jquery.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </head>
 
@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
                     class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="/" target="_blank">
                 <img class="brand-img d-inline-block mr-5" src="{{ asset('dist/img/logo.png') }}" style="width:50%;"
                     alt="directory" />
             </a>
@@ -112,50 +112,6 @@
         </nav>
         <div id="hk_nav_backdrop" class="hk-nav-backdrop"></div>
         <!-- /Vertical Nav -->
-
-        <!-- Setting Panel -->
-        <div class="hk-settings-panel">
-            <div class="nicescroll-bar position-relative">
-                <div class="settings-panel-wrap">
-                    <div class="settings-panel-head mb-15">
-                        <a href="javascript:void(0);" id="settings_panel_close" class="settings-panel-close"><span
-                                class="feather-icon"><i data-feather="x"></i></span></a>
-                    </div>
-                    <hr>
-                    <h6 class="mb-5">Navigation</h6>
-                    <p class="font-14">Menu comes in two modes: dark & light</p>
-                    <div class="button-list hk-nav-select mb-10">
-                        <button type="button" id="nav_light_select"
-                            class="btn btn-outline-primary btn-sm btn-wth-icon icon-wthot-bg"><span
-                                class="icon-label"><i class="fa fa-sun-o"></i> </span><span class="btn-text">Light
-                                Mode</span></button>
-                        <button type="button" id="nav_dark_select"
-                            class="btn btn-outline-light btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i
-                                    class="fa fa-moon-o"></i> </span><span class="btn-text">Dark Mode</span></button>
-                    </div>
-                    <hr>
-                    <h6 class="mb-5">Top Nav</h6>
-                    <p class="font-14">Choose your liked color mode</p>
-                    <div class="button-list hk-navbar-select mb-10">
-                        <button type="button" id="navtop_light_select"
-                            class="btn btn-outline-light btn-sm btn-wth-icon icon-wthot-bg"><span class="icon-label"><i
-                                    class="fa fa-sun-o"></i> </span><span class="btn-text">Light Mode</span></button>
-                        <button type="button" id="navtop_dark_select"
-                            class="btn btn-outline-primary btn-sm btn-wth-icon icon-wthot-bg"><span
-                                class="icon-label"><i class="fa fa-moon-o"></i> </span><span class="btn-text">Dark
-                                Mode</span></button>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h6>Scrollable Header</h6>
-                        <div class="toggle toggle-sm toggle-simple toggle-light toggle-bg-primary scroll-nav-switch">
-                        </div>
-                    </div>
-                    <button id="reset_settings" class="btn btn-primary btn-block btn-reset mt-30">Reset</button>
-                </div>
-            </div>
-        </div>
-        <!-- /Setting Panel -->
         <!-- Main Content -->
         <div class="hk-pg-wrapper">
             @yield('content')
@@ -164,10 +120,10 @@
                 <footer class="footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <p>Powered by<a href="" class="text-dark" target="_blank">articdesign.com</a> © </p>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="d-inline-block btn btn-icon"><span class="nav-link">CLOSE</span></a>
+                            <p>© Gate City Bar Association | Powered by<a href="https://articdesigns.com/"
+                                    class="text-dark" target="_blank">articdesign.com |
+                                    <a href="{{ route('login') }}">Admin Login </a> |<a href=""> Submit Listing </a>
+                            </p>
                         </div>
                     </div>
                 </footer>

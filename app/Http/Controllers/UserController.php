@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Group;
 use App\Category;
 use App\Directory;
+use App\User; 
 use Auth;
 use Illuminate\Support\Str;
 class UserController extends Controller
@@ -13,7 +14,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
     // ajax call for category from group id.
     public function getCategory(Request $request){
@@ -22,6 +23,9 @@ class UserController extends Controller
     }
     // adding listing from user
     public function addListing(Request $request){
+        
+        
+
         $request->validate([
             // 'profile_image' => 'required',
             'profile_image' => 'image|mimes:jpeg,png,jpg,gif,svg'
@@ -42,8 +46,14 @@ class UserController extends Controller
         $dir->bar_year = $request->bar;
         $dir->practice_area = $request->areas;
         $dir->category_id = $request->category_name;
-        $dir->user_id = Auth::user()->id;
+        // $dir->user_id = Auth::user()->id;
         $dir->save();
+        if (!User::where('email', '=', $request->email)->exists()) {
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+        }
         return back()->with('success', 'Thank You for your submission. Your submission is now going through the approval process.');
     }
 //    management listings

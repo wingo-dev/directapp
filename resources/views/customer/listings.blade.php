@@ -15,6 +15,7 @@
                                             <th>Group Name</th>
                                             <th>Category Name</th>
                                             <th>Photo</th>
+                                            <th>Person Name</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -25,12 +26,14 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td></td>
                                         </tr>
                                             @for($category_num=0; $category_num < count($listing); $category_num++)
                                              <tr>
                                                 <td></td>
                                                 <td>{{$listing[$category_num]["ctg_name"]}}</td>
                                                 <td><img src="{{asset('profile_image/'.$listing[$category_num]["p_img"])}}" width="50"></td>
+                                                 <td>{{$listing[$category_num]["name"]}}</td>
                                                 <td>
                                                     <a href="{{ route('view.edit.listing', $listing[$category_num]["id"]) }}" class="mr-25" data-toggle="tooltip"
                                                        data-original-title="Edit"> <i class="icon-pencil"></i> </a>

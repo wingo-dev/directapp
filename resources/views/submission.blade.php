@@ -1,6 +1,6 @@
-@extends('layouts.customerlayout')
+@extends('layouts.frontlayout')
 @section('content')
-<div class="container">
+    <div class="container">
     <div class="row">
         <div class="col-xl-12">
             <section class="hk-sec-wrapper mt-50">
@@ -134,5 +134,4 @@
         });
     });
 </script>
-
 @endsection

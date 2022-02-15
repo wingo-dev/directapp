@@ -31,7 +31,7 @@
         <nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar">
             <a id="navbar_toggle_btn" class="navbar-toggle-btn nav-link-hover" href="javascript:void(0);"><i
                     class="ion ion-ios-menu"></i></a>
-            <a class="navbar-brand" href="">
+            <a class="navbar-brand" href="/" target="_blank">
                 <img class="brand-img d-inline-block mr-5" src="{{ asset('dist/img/logo.png') }}" style="width:50%;"
                     alt="directory" />
             </a>
@@ -130,10 +130,10 @@
                 <footer class="footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <p>Powered by<a href="" class="text-dark" target="_blank">articdesign.com</a> © </p>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <a href="#" class="d-inline-block btn btn-icon"><span class="nav-link">CLOSE</span></a>
+                            <p>© Gate City Bar Association | Powered by<a href="https://articdesigns.com/"
+                                    class="text-dark" target="_blank">articdesign.com |
+                                    <a href="{{ route('login') }}">Admin Login </a> |<a href=""> Submit Listing </a>
+                            </p>
                         </div>
                     </div>
                 </footer>
