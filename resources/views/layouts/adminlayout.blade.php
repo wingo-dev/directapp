@@ -80,16 +80,22 @@
             <div class="nicescroll-bar">
                 <div class="navbar-nav-wrap">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin/setting*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.setting') }}">
+                                <i class="ion ion-ios-person-add"></i>
+                                <span class="nav-link-text">Setting</span>
+                            </a>
+                        </li>
+                        {{-- <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.home') }}">
                                 <i class="ion ion-ios-person-add"></i>
                                 <span class="nav-link-text">Add Customer</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item {{ Request::is('admin/view-customers*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.view.customers') }}">
                                 <i class="ion ion-ios-person-add"></i>
-                                <span class="nav-link-text">Customers Management </span>
+                                <span class="nav-link-text">People Management </span>
                             </a>
                         </li>
                     </ul>
