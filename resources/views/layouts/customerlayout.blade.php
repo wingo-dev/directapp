@@ -85,7 +85,7 @@
                         <li class="nav-item {{ Request::is('user') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('user.home') }}">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span class="nav-link-text">Add Listings</span>
+                                <span class="nav-link-text">Setting</span>
                             </a>
                         </li>
                     </ul>
@@ -94,6 +94,12 @@
                         <span>GS</span>
                     </div>
                     <ul class="navbar-nav flex-column">
+                        <li class="nav-item {{ Request::is('user/view-category*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('user.category') }}">
+                                <i class="ion ion-ios-book"></i>
+                                <span class="nav-link-text">Category</span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ Request::is('user/management*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('view.listings') }}">
                                 <i class="ion ion-ios-book"></i>

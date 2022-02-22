@@ -11,24 +11,46 @@
                                 <div class="table-responsive">
                                     <table class="table table-flush mb-0">
                                         <thead>
-                                        <tr>
-                                            <th>Picture</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Status</th>
-                                        </tr>
+                                            <tr>
+                                                <th>Group Name</th>
+                                                <th>Category Name</th>
+                                                <th>Picture</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Phone Number</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($pendings as $pending)
-                                            <tr>
-                                                <td><img src="{{asset('profile_image/'.$pending->p_img)}}" width="100"></td>
-                                                <td>{{$pending->name}}</td>
-                                                <td>{{$pending->email}}</td>
-                                                <td>{{$pending->phone}}</td>
-                                                <td><span class="badge badge-info">Pending</span></td>
-                                            </tr>
-                                        @endforeach
+                                            @foreach ($listings as $listing)
+                                                <tr class="thead-info">
+                                                    <td>
+                                                        <h6>{{ $listing[0]['group_name'] }}</h6>
+                                                    </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                @for ($category_num = 0; $category_num < count($listing); $category_num++)
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>{{ $listing[$category_num]['ctg_name'] }}</td>
+                                                        <td><img src="{{ asset('profile_image/' . $listing[$category_num]['p_img']) }}"
+                                                                width="100"></td>
+                                                        <td>{{ $listing[$category_num]['name'] }}</td>
+                                                        <td>{{ $listing[$category_num]['email'] }}</td>
+                                                        <td>{{ $listing[$category_num]['phone'] }}</td>
+                                                        <td><span class="badge badge-info">Pending</span></td>
+                                                        <td><a href="{{ route('user.approve', $listing[$category_num]['id']) }}"
+                                                                class="btn btn-primary">Approve</a></td>
+                                                    </tr>
+                                                @endfor
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

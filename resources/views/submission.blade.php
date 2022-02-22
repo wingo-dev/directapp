@@ -16,7 +16,7 @@
                 @endif
                 <div class="row">
                     <div class="col-sm">
-                        <form action="{{ route('add.listing') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('submission.add.listing') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="image" class="col-sm-4 col-form-label">Profile Image</label>
@@ -119,7 +119,7 @@
         $("#group").change(function(){
             var group_id = this.value;
             $.post(
-                    "{{ route('category') }}", {
+                    "{{ route('submission.category') }}", {
                         group_id: group_id,
                         _token: '{{ csrf_token() }}'
                     }).done(function(result) {

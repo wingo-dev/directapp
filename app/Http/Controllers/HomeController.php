@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
-use App\Group;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -23,10 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $groups = Group::all();
-        return view('customer', compact('groups'));
+        return view('staffsetting');
     }
-    public function adminHome(){
+    public function updateStaffSetting(Request $request){
+        $data = $request->all();
+        User::where('id', $data['user_id'])->update(['name' => $data['name'], 'email' => $data['email'],
+            'password' => bcrypt($data['password'])]);
+        return back()->with('success', 'Successfully Updated.');
+    }
+    public function adminHome()
+    {
         return view('adminHome');
     }
 }

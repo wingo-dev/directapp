@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xl-12">
                 <section class="hk-sec-wrapper mt-50">
-                    <h5 class="hk-sec-title">Pending listings</h5>
+                    <h5 class="hk-sec-title">listings</h5>
                     <div class="row">
                         <div class="col-sm">
                             <div class="table-wrap">

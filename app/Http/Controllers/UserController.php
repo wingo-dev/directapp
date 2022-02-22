@@ -6,7 +6,6 @@ use App\Category;
 use App\Directory;
 use App\Group;
 use App\User;
-use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,7 +14,7 @@ class UserController extends Controller
     //
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     // ajax call for category from group id.
     public function getCategory(Request $request)
@@ -66,10 +65,46 @@ class UserController extends Controller
         return back()->with('success', 'Thank You for your submission. Your submission is now going through the approval process.');
     }
 //    management listings
+    public function viewCategory()
+    {
+        $groups = Group::all();
+        return view('customer.category', compact('groups'));
+    }
+    public function userAddGroup(Request $request)
+    {
+        Group::create([
+            'group_name' => $request->g_name,
+        ]);
+        return back()->with('success', 'Added the group name successfully');
+    }
+    public function userDeleteGroup($g_id)
+    {
+        Group::where('id', $g_id)->delete();
+        return back();
+    }
+    public function userAddCategory($g_id)
+    {
+        $ctgs = Category::where('group_id', $g_id)->get();
+        return view('customer.add_category', compact('g_id', 'ctgs'));
+    }
+    public function userStoreCategory(Request $request)
+    {
+        $ctg = new Category();
+        $ctg->ctg_name = $request->ctg_name;
+        $ctg->group_id = $request->g_id;
+        $ctg->save();
+        return back();
+    }
+    public function userDeleteCategory($ctg_id)
+    {
+        Category::where('id', $ctg_id)->delete();
+        return back();
+    }
+
     public function viewListings()
     {
         $listings = Directory::join('categories', 'categories.id', 'directories.category_id')
-            ->join('groups', 'groups.id', 'categories.group_id')->where('directories.user_id', Auth::user()->id)->get(['categories.*', 'groups.*', 'directories.*']);
+            ->join('groups', 'groups.id', 'categories.group_id')->get(['categories.*', 'groups.*', 'directories.*']);
         $listings = $listings->groupBy('group_name');
 //        dd($listings);
         return view('customer.listings', compact('listings'));
@@ -96,8 +131,14 @@ class UserController extends Controller
 //    pending listings
     public function pendingListings()
     {
-        $pendings = Directory::where('user_id', Auth::user()->id)
-            ->where('status', 0)->get();
-        return view('customer.pending', compact('pendings'));
+        $listings = Directory::join('categories', 'categories.id', 'directories.category_id')
+            ->join('groups', 'groups.id', 'categories.group_id')->where('status', 0)->get(['categories.*', 'groups.*', 'directories.*']);
+        $listings = $listings->groupBy('group_name');
+        return view('customer.pending', compact('listings'));
+    }
+    public function approveListing($listing_id)
+    {
+        Directory::where('id', $listing_id)->update(['status' => 1]);
+        return back();
     }
 }

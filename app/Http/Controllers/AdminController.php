@@ -41,6 +41,24 @@ class AdminController extends Controller
         ]);
         return back();
     }
+    public function viewSiteOwners(){
+        $owners = User::where('is_admin',0)->get();
+        return view('admin.view_owners', compact('owners'));
+    }
+    public function editOwner($id){
+        $owner = User::where('id', $id)->get();
+        return view('admin.edit_owner', compact('owner'));
+    }
+    public function updateOwner(Request $request){
+        $data = $request->all();
+        User::where('id', $data['user_id'])->update(['name' => $data['name'], 'email' => $data['email'], 'password' => bcrypt($data['password'])]);
+        return redirect()->route('admin.view.siteowners');
+    }
+    public function ownerDelete($id){
+        User::where('id', $id)->delete();
+        return back();
+    }
+    
     public function viewCustomers()
     {
         $customers = User::where('is_admin',NULL)->get();
@@ -141,4 +159,4 @@ class AdminController extends Controller
         Directory::where('id', $listing_id)->update(['status' => 1]);
         return back();
     }
-}
+}   

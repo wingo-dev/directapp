@@ -86,12 +86,18 @@
                                 <span class="nav-link-text">Setting</span>
                             </a>
                         </li>
-                        {{-- <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.home') }}">
                                 <i class="ion ion-ios-person-add"></i>
-                                <span class="nav-link-text">Add Customer</span>
+                                <span class="nav-link-text">Add Site Owner</span>
                             </a>
-                        </li> --}}
+                        </li>
+                        <li class="nav-item {{ Request::is('admin/home*') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('admin.view.siteowners') }}">
+                                <i class="ion ion-ios-person-add"></i>
+                                <span class="nav-link-text">Site Owners Management</span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ Request::is('admin/view-customers*') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('admin.view.customers') }}">
                                 <i class="ion ion-ios-person-add"></i>
